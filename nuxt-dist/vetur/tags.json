@@ -5,15 +5,6 @@
   "Tutorial": {
     "description": "Auto imported from components/Tutorial.vue"
   },
-  "LayoutFooter": {
-    "description": "Auto imported from components/layout/Footer.vue"
-  },
-  "LayoutHeader": {
-    "description": "Auto imported from components/layout/Header.vue"
-  },
-  "LayoutMobileFooter": {
-    "description": "Auto imported from components/layout/MobileFooter.vue"
-  },
   "CardBet": {
     "description": "Auto imported from components/card/Bet.vue"
   },
@@ -22,5 +13,14 @@
   },
   "CardPageSelection": {
     "description": "Auto imported from components/card/PageSelection.vue"
+  },
+  "LayoutFooter": {
+    "description": "Auto imported from components/layout/Footer.vue"
+  },
+  "LayoutHeader": {
+    "description": "Auto imported from components/layout/Header.vue"
+  },
+  "LayoutMobileFooter": {
+    "description": "Auto imported from components/layout/MobileFooter.vue"
   }
 }
