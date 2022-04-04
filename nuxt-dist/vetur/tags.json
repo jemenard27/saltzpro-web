@@ -1,0 +1,26 @@
+{
+  "NuxtLogo": {
+    "description": "Auto imported from components/NuxtLogo.vue"
+  },
+  "Tutorial": {
+    "description": "Auto imported from components/Tutorial.vue"
+  },
+  "LayoutFooter": {
+    "description": "Auto imported from components/layout/Footer.vue"
+  },
+  "LayoutHeader": {
+    "description": "Auto imported from components/layout/Header.vue"
+  },
+  "LayoutMobileFooter": {
+    "description": "Auto imported from components/layout/MobileFooter.vue"
+  },
+  "CardBet": {
+    "description": "Auto imported from components/card/Bet.vue"
+  },
+  "CardConfirmation": {
+    "description": "Auto imported from components/card/Confirmation.vue"
+  },
+  "CardPageSelection": {
+    "description": "Auto imported from components/card/PageSelection.vue"
+  }
+}

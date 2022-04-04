@@ -1,0 +1,23 @@
+[
+  {
+    "name": "teller",
+    "path": "/teller",
+    "component": "D:\\\\development\\\\NuxtJS\\\\saltzpro-web\\\\pages\\\\teller\\\\index.vue",
+    "chunkName": "pages/teller/index",
+    "_name": "_ee778cda"
+  },
+  {
+    "name": "teller2",
+    "path": "/teller2",
+    "component": "D:\\\\development\\\\NuxtJS\\\\saltzpro-web\\\\pages\\\\teller2\\\\index.vue",
+    "chunkName": "pages/teller2/index",
+    "_name": "_860f1422"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\development\\\\NuxtJS\\\\saltzpro-web\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_0e1492f1"
+  }
+]

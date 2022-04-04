@@ -21,6 +21,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -36,11 +37,18 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // Simple usage
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'vue-sweetalert2/nuxt',
   ],
+  sweetalert: {
+    confirmButtonColor: '#2563eb',
+    cancelButtonColor: '#ff0000'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -49,5 +57,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  }
+  },
+
+  buildDir: 'nuxt-dist'
+  
 }

@@ -1,5 +1,7 @@
 <template>
-  <Tutorial/>
+  <div>
+    <card-page-selection></card-page-selection>
+  </div>
 </template>
 
 <script lang="ts">

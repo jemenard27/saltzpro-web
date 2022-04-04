@@ -1,0 +1,11 @@
+@mixin touchscreen {
+    @media screen and (max-width: 800px) {
+        @content;
+    }
+}
+
+@mixin mobile-lg {
+    @media screen and (max-width: 500px) {
+        @content;
+    }
+}
