@@ -44,10 +44,15 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'vue-sweetalert2/nuxt',
+    '@nuxtjs/axios',
   ],
   sweetalert: {
     confirmButtonColor: '#2563eb',
     cancelButtonColor: '#ff0000'
+  },
+  axios: {
+    
+    baseURL: 'http://localhost:3000',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

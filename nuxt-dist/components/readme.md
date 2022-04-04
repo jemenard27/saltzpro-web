@@ -8,9 +8,9 @@ You can directly use them in pages and other components without the need to impo
 
 - `<NuxtLogo>` | `<nuxt-logo>` (components/NuxtLogo.vue)
 - `<Tutorial>` | `<tutorial>` (components/Tutorial.vue)
-- `<LayoutFooter>` | `<layout-footer>` (components/layout/Footer.vue)
-- `<LayoutHeader>` | `<layout-header>` (components/layout/Header.vue)
-- `<LayoutMobileFooter>` | `<layout-mobile-footer>` (components/layout/MobileFooter.vue)
 - `<CardBet>` | `<card-bet>` (components/card/Bet.vue)
 - `<CardConfirmation>` | `<card-confirmation>` (components/card/Confirmation.vue)
 - `<CardPageSelection>` | `<card-page-selection>` (components/card/PageSelection.vue)
+- `<LayoutFooter>` | `<layout-footer>` (components/layout/Footer.vue)
+- `<LayoutHeader>` | `<layout-header>` (components/layout/Header.vue)
+- `<LayoutMobileFooter>` | `<layout-mobile-footer>` (components/layout/MobileFooter.vue)
