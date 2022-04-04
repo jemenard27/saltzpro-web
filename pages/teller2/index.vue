@@ -148,6 +148,7 @@
 </style>
 
 <script>
+import { teller } from "~/services/teller"
 export default {
     layout: 'siteller',
     data() {
@@ -179,7 +180,7 @@ export default {
             },
             betConfirmation: false,
             betDetails: {},
-
+            beers: [],
         }
     },
     methods: {
@@ -212,11 +213,18 @@ export default {
 
         closeConfirmation() {
             this.betConfirmation = false
+        }, 
+
+        async getBeers() {
+            await teller.allData().then((response) => {
+                this.beers = response.data.data;
+            });
         }
+        
     },
     mounted() {
         setInterval(() => {
-            console.log('t')
+            this.getBeers()
         }, 1000);
     }
 }

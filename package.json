@@ -29,6 +29,7 @@
     "@nuxt/types": "^2.13.2",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/tailwindcss": "^4.2.1",
+    "@types/node": "^17.0.23",
     "postcss": "^8.4.4"
   }
 }
