@@ -1,5 +1,12 @@
 [
   {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\development\\\\NuxtJS\\\\saltzpro-web\\\\pages\\\\login\\\\index.vue",
+    "chunkName": "pages/login/index",
+    "_name": "_04d2750c"
+  },
+  {
     "name": "teller",
     "path": "/teller",
     "component": "D:\\\\development\\\\NuxtJS\\\\saltzpro-web\\\\pages\\\\teller\\\\index.vue",

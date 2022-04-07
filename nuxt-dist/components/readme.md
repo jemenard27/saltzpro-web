@@ -10,6 +10,7 @@ You can directly use them in pages and other components without the need to impo
 - `<Tutorial>` | `<tutorial>` (components/Tutorial.vue)
 - `<CardBet>` | `<card-bet>` (components/card/Bet.vue)
 - `<CardConfirmation>` | `<card-confirmation>` (components/card/Confirmation.vue)
+- `<CardLogin>` | `<card-login>` (components/card/Login.vue)
 - `<CardPageSelection>` | `<card-page-selection>` (components/card/PageSelection.vue)
 - `<LayoutFooter>` | `<layout-footer>` (components/layout/Footer.vue)
 - `<LayoutHeader>` | `<layout-header>` (components/layout/Header.vue)

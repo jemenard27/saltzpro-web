@@ -2,7 +2,7 @@
     <div class="main-container">
         <v-app>
             <layout-header></layout-header>
-            <Nuxt />
+            <Nuxt />    
             <!-- <layout-footer></layout-footer> -->
             <layout-mobile-footer></layout-mobile-footer>
         </v-app>

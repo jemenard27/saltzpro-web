@@ -3,7 +3,7 @@
         <v-row>
             <v-col sm="7" md="8">
                 <div class="amt-display-container flex justify-between w-full">
-                    <span>Bet Amount: </span>
+                    <span> Logged in: {{$auth.loggedIn}} </span>
                     <span>{{ betAmt.toLocaleString() }}</span>
                 </div>
             </v-col>

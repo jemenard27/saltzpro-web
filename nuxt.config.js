@@ -44,6 +44,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'vue-sweetalert2/nuxt',
+    '@nuxtjs/auth-next',
     '@nuxtjs/axios',
   ],
   sweetalert: {
@@ -51,8 +52,11 @@ export default {
     cancelButtonColor: '#ff0000'
   },
   axios: {
-    
     baseURL: 'http://localhost:3000',
+  },
+  
+  router: {
+    middleware: ['auth']
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -64,6 +68,31 @@ export default {
     extend(config, ctx) {}
   },
 
-  buildDir: 'nuxt-dist'
+  buildDir: 'nuxt-dist',
+  
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8000',
+        endpoints: {
+          login: {
+            url: '/api/login',
+          },
+          user: {
+            user: '/teller2'
+          },
+          logout: {
+            url: 'api/logout',
+          }
+        }
+      },
+    }
+    // redirect: {
+    //   login: '/login',
+    //   home: '/',
+    //   logout: '/login'
+    // }
+  }
   
 }

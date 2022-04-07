@@ -11,6 +11,9 @@
   "CardConfirmation": {
     "description": "Auto imported from components/card/Confirmation.vue"
   },
+  "CardLogin": {
+    "description": "Auto imported from components/card/Login.vue"
+  },
   "CardPageSelection": {
     "description": "Auto imported from components/card/PageSelection.vue"
   },

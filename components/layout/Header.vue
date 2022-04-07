@@ -1,10 +1,10 @@
 <template>
     <div class="header-container w-full bg-green-600">
         <div class="container mx-auto">
-            <span>Event name: 
-                <span>Sample</span>
+            <span>
+                <a href="" @click="$auth.logout()">logout</a>
             </span>
-            <span class="block"> Odds display: 
+            <span class="block"> Logged in: {{$auth.user}} 
                 <span>180-190</span>
             </span>
         </div>
