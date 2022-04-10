@@ -10,3 +10,9 @@
   line-height: $lh;
   color: $color;
 }
+
+@mixin josefinsans() {
+  font-family: 'Josefin Sans', sans-serif;
+  font-style: normal;
+  @content;
+}

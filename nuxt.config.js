@@ -1,6 +1,11 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
+
+  server: {
+    host: '192.168.1.19',
+    port: '3000',
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -45,7 +50,8 @@ export default {
   modules: [
     'vue-sweetalert2/nuxt',
     '@nuxtjs/axios',
-  ],
+    '@nuxtjs/auth-next'
+  ], 
   sweetalert: {
     confirmButtonColor: '#2563eb',
     cancelButtonColor: '#ff0000'
@@ -54,6 +60,40 @@ export default {
     
     baseURL: 'http://localhost:3000',
   },
+  
+  router: {
+    middleware: ['auth']
+  },
+
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://192.168.1.19:8000',
+        endpoints: {
+          login: {
+            url: '/api/login'
+          },
+          user: {
+            url: '/api/user'
+          },
+          logout: {
+            url: 'api/logout'
+          }
+        }
+      },
+    },
+    
+    redirect: {
+      login: '/login',
+      logout: '/',
+      home: '/teller2',
+      // callback: '/login'
+    },
+    watchLoggedIn: true
+  },
+
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

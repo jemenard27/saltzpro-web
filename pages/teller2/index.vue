@@ -170,7 +170,7 @@ export default {
                         {suggestedAmt : 1500},
                         {suggestedAmt : 2000},
                         {suggestedAmt : 2500},
-                        {suggestedAmt : 3000},
+                        {suggestedAmt : 3000}, 
                         {suggestedAmt : 3500},
                         {suggestedAmt : 4000},
                         {suggestedAmt : 4500},
@@ -216,7 +216,7 @@ export default {
     },
     mounted() {
         setInterval(() => {
-            console.log('t')
+            
         }, 1000);
     }
 }

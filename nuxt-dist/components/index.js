@@ -6,6 +6,7 @@ export { default as CardPageSelection } from '../..\\components\\card\\PageSelec
 export { default as LayoutFooter } from '../..\\components\\layout\\Footer.vue'
 export { default as LayoutHeader } from '../..\\components\\layout\\Header.vue'
 export { default as LayoutMobileFooter } from '../..\\components\\layout\\MobileFooter.vue'
+export { default as LayoutTopbar } from '../..\\components\\layout\\Topbar.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

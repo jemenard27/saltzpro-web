@@ -14,3 +14,4 @@ You can directly use them in pages and other components without the need to impo
 - `<LayoutFooter>` | `<layout-footer>` (components/layout/Footer.vue)
 - `<LayoutHeader>` | `<layout-header>` (components/layout/Header.vue)
 - `<LayoutMobileFooter>` | `<layout-mobile-footer>` (components/layout/MobileFooter.vue)
+- `<LayoutTopbar>` | `<layout-topbar>` (components/layout/Topbar.vue)
