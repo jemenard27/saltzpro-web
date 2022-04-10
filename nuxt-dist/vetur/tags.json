@@ -22,5 +22,8 @@
   },
   "LayoutMobileFooter": {
     "description": "Auto imported from components/layout/MobileFooter.vue"
+  },
+  "LayoutTopbar": {
+    "description": "Auto imported from components/layout/Topbar.vue"
   }
 }

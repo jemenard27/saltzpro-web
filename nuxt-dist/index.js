@@ -16,6 +16,7 @@ import nuxt_plugin_plugin_687a2a57 from 'nuxt_plugin_plugin_687a2a57' // Source:
 import nuxt_plugin_plugin_4d0288fd from 'nuxt_plugin_plugin_4d0288fd' // Source: .\\vuetify\\plugin.js (mode: 'all')
 import nuxt_plugin_axios_279528fa from 'nuxt_plugin_axios_279528fa' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_vuesweetalert2_2429da11 from 'nuxt_plugin_vuesweetalert2_2429da11' // Source: .\\vue-sweetalert2.js (mode: 'client')
+import nuxt_plugin_auth_bc2f0e14 from 'nuxt_plugin_auth_bc2f0e14' // Source: .\\auth.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -55,7 +56,7 @@ Object.defineProperty(Vue.prototype, '$nuxt', {
 
 Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n-head-ssr","tagIDKeyName":"hid"})
 
-const defaultTransition = {"name":"page","mode":"out-in","appear":true,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
+const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
 async function createApp(ssrContext, config = {}) {
   const router = await createRouter(ssrContext, config)
@@ -193,6 +194,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_vuesweetalert2_2429da11 === 'function') {
     await nuxt_plugin_vuesweetalert2_2429da11(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_auth_bc2f0e14 === 'function') {
+    await nuxt_plugin_auth_bc2f0e14(app.context, inject)
   }
 
   // Lock enablePreview in context

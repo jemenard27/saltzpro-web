@@ -11,9 +11,10 @@ import '..\\node_modules\\@nuxtjs\\tailwindcss\\dist\\runtime\\tailwind.css'
 import '..\\node_modules\\vuetify\\dist\\vuetify.css'
 
 import _6f6c098b from '..\\layouts\\default.vue'
+import _77a66d33 from '..\\layouts\\login.vue'
 import _7ff7d3ea from '..\\layouts\\siteller.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b),"_siteller": sanitizeComponent(_7ff7d3ea) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_login": sanitizeComponent(_77a66d33),"_siteller": sanitizeComponent(_7ff7d3ea) }
 
 export default {
   render (h, props) {
