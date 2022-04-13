@@ -64,15 +64,11 @@ export default {
         return {
             user: null,
             pass: null,
-            bottomText: 'OCB Platform should only be used inside authorized cockpits or outlets.',
+            bottomText: null,
         }
     },
     layout: 'login',
     methods: {
-        click() {
-            // console.log(this.username, this.password)
-            this.bottomText = 'This is me'
-        },
         login() {
             this.$auth.loginWith('laravelSanctum', {
                 data: {
@@ -81,7 +77,6 @@ export default {
                 }
             }).then(() => {
                 location.reload();
-                this.bottomText = this.$auth.user
             })
         }
     }
