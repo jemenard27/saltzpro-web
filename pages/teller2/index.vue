@@ -5,28 +5,28 @@
             <img src="~assets/images/page-logo.jpg" alt="">
             
             <span>
-                Fight #9
+                Fight # {{sultada.sltd_number}}
                 <p class="block">
-                    A2 - CEBU 4 COCK/BULLSTAG DERBY DAY 1 (AMENIC N' CALAJOAN)
+                    {{sultada.ev_name}}
                 </p>
             </span>
         </v-container>
 
         <div class="betting-selection-container">
 
-            <v-container class="bet-status w-full bg-red-600 text-center">
-                <span>Closed</span>
+            <v-container class="bet-status w-full bg-red-600 text-center" :class="{'open-bet': sultada.bet_stat == 'OB' && sultada.sltd_odds}">
+                <span>{{sultada.bet_stat == 'OB' && sultada.sltd_odds != 0 ? 'Open' : 'Closed'}}</span>
             </v-container>
             
-            <v-row no-gutters class="bet-side">
+            <v-row no-gutters class="bet-side" v-if="sultada.sltd_odds != 0">
                 <v-col cols="6" class="bg-red-600 flex flex-col">
                     <v-container class="text-center bg-red-800"><span>MERON</span></v-container>
                     <v-container class="text-center">
                         <span class="total-amt">
-                            452,745.00
-                            <span class="block odds">180.59%</span>
+                            {{sultada.sum_meron != null ? sultada.sum_meron.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}}
+                            <span class="block odds">{{sultada.odds_meron}}%</span>
                         </span>
-                        <v-btn class="w-full bet-button meron" @click="openBetModal('M')">CHOOSE<br>MERON</v-btn>
+                        <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button meron" @click="openBetModal('M')">CHOOSE<br>MERON</v-btn>
                     </v-container>
                     
                 </v-col>
@@ -35,10 +35,10 @@
                     <v-container class="text-center bg-blue-800"><span>WALA</span></v-container>
                     <v-container class="text-center">
                         <span class="total-amt">
-                            412,453.15
-                            <span class="block odds">198.23%</span>
+                            {{sultada.sum_wala != null ? sultada.sum_wala.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}}
+                            <span class="block odds">{{sultada.odds_wala}}%</span>
                         </span>
-                        <v-btn class="w-full bet-button wala" @click="openBetModal('W')">CHOOSE<br>WALA</v-btn>
+                        <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button wala" @click="openBetModal('W')">CHOOSE<br>WALA</v-btn>
                     </v-container>
                     
                 </v-col>
@@ -79,6 +79,11 @@
     @import '~assets/scss/variants/media-queries';
 
     .teller2-content {
+        .betting-selection-container {
+            .open-bet {
+                background-color: $green_1 !important;
+            }
+        }
         &.container {
             padding: 0px;
         }
@@ -179,6 +184,7 @@ export default {
             },
             betConfirmation: false,
             betDetails: {},
+            sultada: {}
 
         }
     },
@@ -212,11 +218,18 @@ export default {
 
         closeConfirmation() {
             this.betConfirmation = false
-        }
+        },
+        
+        async currentSltd() {
+            await this.$axios.$get(this.$axios.defaults.baseURL + `/sultada/${this.$auth.user['0'].branch_id}`).then((res) => {
+                this.sultada = res['0']
+            })
+            // console.log(this.sultada.bet_stat)
+        },
     },
     mounted() {
         setInterval(() => {
-            
+            this.currentSltd()
         }, 1000);
     }
 }

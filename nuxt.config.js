@@ -1,11 +1,7 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: true,
+  ssr: false,
 
-  server: {
-    host: '192.168.1.19',
-    port: '3000',
-  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -58,7 +54,7 @@ export default {
   },
   axios: {
     
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:8000/api',
   },
   
   router: {
@@ -69,7 +65,7 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
-        url: 'http://192.168.1.19:8000',
+        url: 'http://localhost:8000',
         endpoints: {
           login: {
             url: '/api/login'

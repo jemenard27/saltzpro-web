@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Query\CurrentSultadaController;
 
 
 /*
@@ -17,8 +18,10 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    $data = $request->user()->join('ref_branch_rec', 'no_br_rec', '=', 'branch_id')->get();
+    $data = $request->user()
+                    ->join('ref_branch_rec', 'no_br_rec', '=', 'branch_id')->get();
     return $data;
 });
 
 Route::post('/login', LoginController::class);
+Route::get('/sultada/{cur_id}', [CurrentSultadaController::class, 'getCurrentSltd']);
