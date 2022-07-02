@@ -14,35 +14,54 @@
 
         <div class="betting-selection-container">
 
-            <v-container class="bet-status w-full bg-red-600 text-center" :class="{'open-bet': sultada.bet_stat == 'OB' && sultada.sltd_odds}">
-                <span>{{sultada.bet_stat == 'OB' && sultada.sltd_odds != 0 ? 'Open' : 'Closed'}}</span>
+            <v-container class="bet-status w-full bg-red-600 text-center" :class="{'open-bet': sultada.bet_stat == 'OB' && sultada.sltd_odds != 0}">
+                <span v-if="sultada.sltd_res == 'NR'">{{sultada.bet_stat == 'OB' && sultada.sltd_odds != 0 ? 'Open' : 'Closed'}}</span>
+                <span v-else-if="sultada.sltd_res != 'NR'">Finished</span>
             </v-container>
             
-            <v-row no-gutters class="bet-side" v-if="sultada.sltd_odds != 0">
-                <v-col cols="6" class="bg-red-600 flex flex-col">
-                    <v-container class="text-center bg-red-800"><span>MERON</span></v-container>
-                    <v-container class="text-center">
-                        <span class="total-amt">
-                            {{sultada.sum_meron != null ? sultada.sum_meron.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}}
-                            <span class="block odds">{{sultada.odds_meron}}%</span>
-                        </span>
-                        <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button meron" @click="openBetModal('M')">CHOOSE<br>MERON</v-btn>
-                    </v-container>
+            <div v-if="sultada.sltd_res == 'NR'">
+                <v-row no-gutters class="bet-side" v-if="sultada.sltd_odds != 0">
+                    <v-col cols="6" class="bg-red-600 flex flex-col">
+                        <v-container class="text-center bg-red-800"><span>MERON</span></v-container>
+                        <v-container class="text-center">
+                            <span class="total-amt">
+                                {{sultada.sum_meron != null ? getDecimalFormat(sultada.sum_meron) : '0.00'}}
+                                <span class="block odds">{{sultada.odds_meron}}%</span>
+                            </span>
+                            <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button meron" @click="openBetModal('M')">CHOOSE<br>MERON</v-btn>
+                        </v-container>
+                        
+                    </v-col>
                     
-                </v-col>
-                
-                <v-col cols="6" class="bg-blue-600 flex flex-col">
-                    <v-container class="text-center bg-blue-800"><span>WALA</span></v-container>
-                    <v-container class="text-center">
-                        <span class="total-amt">
-                            {{sultada.sum_wala != null ? sultada.sum_wala.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}}
-                            <span class="block odds">{{sultada.odds_wala}}%</span>
-                        </span>
-                        <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button wala" @click="openBetModal('W')">CHOOSE<br>WALA</v-btn>
-                    </v-container>
-                    
-                </v-col>
-            </v-row>
+                    <v-col cols="6" class="bg-blue-600 flex flex-col">
+                        <v-container class="text-center bg-blue-800"><span>WALA</span></v-container>
+                        <v-container class="text-center">
+                            <span class="total-amt">
+                                {{sultada.sum_wala != null ? getDecimalFormat(sultada.sum_wala) : '0.00'}}
+                                <span class="block odds">{{sultada.odds_wala}}%</span>
+                            </span>
+                            <v-btn v-if="sultada.bet_stat == 'OB' && sultada.sltd_odds != 0" class="w-full bet-button wala" @click="openBetModal('W')">CHOOSE<br>WALA</v-btn>
+                        </v-container>
+                        
+                    </v-col>
+                </v-row>
+            </div>
+
+
+            <div v-if="sultada.sltd_res != 'NR'" class="winner-container flex items-center justify-center">
+                <span v-if="sultada.sltd_res == 'M'" class="text-center">Fight #{{sultada.sltd_number}} Winner:
+                    <span class="block meron">MERON</span>
+                </span>
+                <span v-else-if="sultada.sltd_res == 'W'" class="text-center">Fight #{{sultada.sltd_number}} Winner:
+                    <span class="block wala">WALA</span>
+                </span>
+                <span v-else-if="sultada.sltd_res == 'D'" class="text-center">Fight #{{sultada.sltd_number}} Winner:
+                    <span class="block draw">DRAW</span>
+                </span>
+                <span v-else-if="sultada.sltd_res == 'V'" class="text-center">Fight #{{sultada.sltd_number}} Winner:
+                    <span class="block cancel">CANCEL</span>
+                </span>
+            </div>  
 
             <v-dialog v-model="betData.isOpen" max-width="500px">
                 <card-bet @close="closeBetModal" @open-confirmation="openConfirmation" :betInfo="betData"></card-bet>
@@ -148,11 +167,40 @@
             }
         }
 
+        .winner-container {
+            background: transparent;
+            height: 151px;
+            span {
+                font-size: 14px;
+                color: $white;
+                line-height: 20px;
+                font-weight: 500;
+                span {
+                    font-size: 18px;
+                    line-height: 24px;
+                    font-weight: 700;
+                    &.meron {
+                        color: $red !important;
+                    }
+                    &.wala {
+                        color: $blue !important;
+                    }
+                    &.draw {
+                        color: $green_600 !important;
+                    }
+                    &.cancel {
+                        color: $gray_1 !important;
+                    }
+                }
+            }
+        }
+
     }
     
 </style>
 
 <script>
+import Worker from 'web-worker';
 export default {
     layout: 'siteller',
     data() {
@@ -184,9 +232,22 @@ export default {
             },
             betConfirmation: false,
             betDetails: {},
-            sultada: {}
+            sultada: {},
+            isRunQuery: false,
+            oldSltd : 0,
+            oldResult: "NR",
+            curResult: {},
+            bolTrig: false
 
         }
+    },
+    watch: {
+        isRunQuery: {
+            handler(newValue, oldValue) {
+                this.currentSltd()
+            }
+        },
+        
     },
     methods: {
         openBetModal(betSide) {
@@ -211,26 +272,97 @@ export default {
             }
         },
 
-        addBet() {
-            console.log(this.betDetails)
-            this.betConfirmation = false
-        },
-
         closeConfirmation() {
             this.betConfirmation = false
         },
         
         async currentSltd() {
-            await this.$axios.$get(this.$axios.defaults.baseURL + `/sultada/${this.$auth.user['0'].branch_id}`).then((res) => {
-                this.sultada = res['0']
-            })
+            var id = sessionStorage.getItem('pc_branch')
+            await Promise.all([
+                // this.$axios.$get(this.$axios.defaults.baseURL + `/sultada/${this.$auth.user.branch_id}`).then((res) => {
+                this.$axios.$get(this.$axios.defaults.baseURL + `/sultada/${id}`).then((res) => {
+                    this.sultada = res
+                    
+                    setTimeout(() => {
+                        this.isRunQuery = !this.isRunQuery
+                    }, 1000);
+                }).catch(() => {
+                    setTimeout(() => {
+                        this.isRunQuery = !this.isRunQuery
+                    }, 1000);
+                })
+            ])
+                
+            
             // console.log(this.sultada.bet_stat)
         },
+
+        getDecimalFormat(amt) {
+            var currency = parseFloat(amt)
+            var res = 0
+            if (currency == 0) {
+                res = '0.00'
+            } else {
+                res = currency.toLocaleString(undefined, {minimumFractionDigits: 2})
+            }
+            return res
+        },
+
+        getresult(oldSltd) {
+            this.$axios.$put(this.$axios.defaults.baseURL + `/result/${oldSltd}`).then((res) => {
+                this.curResult = res
+                this.bolTrig = true
+            })
+                
+            setTimeout(() => {
+            }, 6000);
+            this.bolTrig = false
+            
+            // console.log(this.sultada.bet_stat)
+        },
+
+        getNext(branchId) {
+            var data = {
+                branch: branchId
+            }
+
+            this.$axios.$put(this.$axios.defaults.baseURL + '/nextsultada', data).then(() => {
+                setTimeout(() => {
+                    this.isRunQuery = !this.isRunQuery
+                }, 4000);
+            })
+            
+            
+        },
+
+        addBet() {
+            var data = {
+                odds_sltd: this.sultada.odds_sltd,
+                bet_amt: this.betDetails.bet,
+                bet_side: this.betDetails.betside == 'M' ? 'MERON' : 'WALA',
+                branch_id: this.$auth.user.branch_id,
+                bet_pc: this.$auth.user.pc_number,
+                sltd_odds: this.sultada.sltd_odds,
+                bet_plasada: this.$auth.user.brnch_plasada
+            }
+            this.$axios.$post(this.$axios.defaults.baseURL + '/addbet', data).then((res) => {
+
+            })
+            this.betConfirmation = false
+        },
+        // webWorking() {
+        //     const worker = new Worker();
+        //     var i = 0
+        //     worker.postMessage('59')
+        //     worker.addEventListener('message', e => {
+        //         console.log(e.data)  // 42
+        //     });
+
+        // }
     },
     mounted() {
-        setInterval(() => {
-            this.currentSltd()
-        }, 1000);
+        this.isRunQuery = true
+        this.isLoginUser()
     }
 }
 </script>
