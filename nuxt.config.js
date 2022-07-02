@@ -1,6 +1,6 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  // ssr: false,
 
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -20,6 +20,10 @@ export default {
     ]
   },
 
+  server: {
+    host: '192.168.1.22' // default: localhost
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     
@@ -27,6 +31,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    {src: '~/plugins/session-storage.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -54,11 +59,14 @@ export default {
   },
   axios: {
     
-    baseURL: 'http://localhost:8000/api',
+    // baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://api.saltzpro.com/api',
+    credentials: true,
+    withCredentials: true,
   },
   
   router: {
-    middleware: ['auth']
+    // middleware: ['auth']
   },
 
   auth: {
@@ -66,12 +74,13 @@ export default {
       laravelSanctum: {
         provider: 'laravel/sanctum',
         url: 'http://localhost:8000',
+        // url: 'http://api.saltzpro.com', 
         endpoints: {
           login: {
             url: '/api/login'
           },
           user: {
-            url: '/api/user'
+            url: '/api/user'  
           },
           logout: {
             url: 'api/logout'

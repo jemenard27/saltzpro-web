@@ -14,4 +14,8 @@ class LoginController extends Controller
             throw new AuthenticationException();
         }
     }
+
+    public function LoginUser(Request $request) {
+        return 'Menard';
+    }
 }
